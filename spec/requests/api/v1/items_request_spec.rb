@@ -94,7 +94,6 @@ describe "Items API" do
   end
 
   #Sad Path Tests
-
   it "gets one item, sad path" do
     merchant = create(:merchant)
     item = create(:item, merchant_id: merchant.id)
@@ -102,7 +101,21 @@ describe "Items API" do
     get "/api/v1/items/#{item.id}"
 
     expect(response.status).to eq(404)
-
   end
 
+  it "create a new item with missing parameters" do
+    merchant = create(:merchant)
+    item_params = {
+      name: 'Lorem ipsum forem',
+      description: "Whacme alsid",
+      merchant_id: merchant.id
+    }
+
+    headers = {"CONTENT_TYPE" => "application/json"}
+    
+    post "/api/v1/items", headers: headers, params: JSON.generate(item: item_params)
+
+    expect(response.status).to eq(404)
+
+  end
 end
