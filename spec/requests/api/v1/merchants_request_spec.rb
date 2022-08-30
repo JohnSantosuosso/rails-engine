@@ -33,12 +33,11 @@ describe "Merchants API" do
     
     merchant = response_body[:data]
 
-    require 'pry'; binding.pry 
-      expect(merchant).to have_key(:id)
-      expect(merchant[:id]).to be_a(String)
+    expect(merchant).to have_key(:id)
+    expect(merchant[:id]).to be_a(String)
 
-      expect(merchant).to have_key(:attributes)
-      expect(merchant[:attributes][:name]).to be_a(String)
+    expect(merchant).to have_key(:attributes)
+    expect(merchant[:attributes][:name]).to be_a(String)
   end
 
 end
