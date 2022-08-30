@@ -13,7 +13,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    require 'pry'; binding.pry 
     render json: Item.update(params[:id], item_params)
   end
 
