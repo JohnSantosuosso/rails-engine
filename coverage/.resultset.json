@@ -209,9 +209,9 @@
           1,
           1,
           1,
-          18,
-          18,
-          18,
+          21,
+          21,
+          21,
           null,
           null
         ]
@@ -220,7 +220,7 @@
         "lines": [
           1,
           1,
-          16,
+          17,
           null,
           null
         ]
@@ -284,6 +284,33 @@
           1,
           1,
           null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/johnsantosuosso/rails-engine/rails-engine/spec/requests/api/v1/item_merchants_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
           1,
           null,
           null
@@ -514,6 +541,33 @@
           null
         ]
       },
+      "/Users/johnsantosuosso/rails-engine/rails-engine/app/controllers/api/v1/item_merchants_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/johnsantosuosso/rails-engine/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/johnsantosuosso/rails-engine/rails-engine/app/serializers/merchant_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/johnsantosuosso/rails-engine/rails-engine/app/controllers/api/v1/items_controller.rb": {
         "lines": [
           1,
@@ -565,12 +619,6 @@
           null
         ]
       },
-      "/Users/johnsantosuosso/rails-engine/rails-engine/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
       "/Users/johnsantosuosso/rails-engine/rails-engine/app/serializers/item_serializer.rb": {
         "lines": [
           1,
@@ -610,17 +658,8 @@
           null,
           null
         ]
-      },
-      "/Users/johnsantosuosso/rails-engine/rails-engine/app/serializers/merchant_serializer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
       }
     },
-    "timestamp": 1661900414
+    "timestamp": 1661900732
   }
 }
