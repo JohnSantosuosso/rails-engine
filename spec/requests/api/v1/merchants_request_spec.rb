@@ -29,15 +29,16 @@ describe "Merchants API" do
 
     get "/api/v1/merchants/#{id}"
 
-    expect(response).to be_successful
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    merchant = response_body[:data]
 
-    merchant = JSON.parse(response.body, symbolize_names: true)
+    require 'pry'; binding.pry 
+      expect(merchant).to have_key(:id)
+      expect(merchant[:id]).to be_a(String)
 
-    expect(merchant).to have_key(:id)
-    expect(merchant[:id]).to be_an(Integer)
-
-    expect(merchant).to have_key(:name)
-    expect(merchant[:name]).to be_a(String)
+      expect(merchant).to have_key(:attributes)
+      expect(merchant[:attributes][:name]).to be_a(String)
   end
 
 end
