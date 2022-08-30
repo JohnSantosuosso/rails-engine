@@ -103,19 +103,33 @@ describe "Items API" do
     expect(response.status).to eq(404)
   end
 
-  it "create a new item with missing parameters" do
+  it "create a new item with missing parameters, description" do
     merchant = create(:merchant)
     item_params = {
       name: 'Lorem ipsum forem',
-      description: "Whacme alsid",
+      unit_price: 43.4,
       merchant_id: merchant.id
     }
-
     headers = {"CONTENT_TYPE" => "application/json"}
     
     post "/api/v1/items", headers: headers, params: JSON.generate(item: item_params)
 
-    expect(response.status).to eq(404)
-
+    expect(response.status).to eq(200)
+    error = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(error[:errors].first).to eq("Description can't be blank")
   end
+
+  it "updates an item with an invalid price" do
+    merchant = create(:merchant)
+    item = create(:item, merchant_id: merchant.id)
+    id = item.id
+    previous_name = Item.last.name
+    item_params = { unit_price: -12.43 }
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+
+    expect(response.status).to eq(404)
+  end
+
 end
