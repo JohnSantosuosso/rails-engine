@@ -1,23 +1,26 @@
 require 'rails_helper'
 
 describe "Merchants API" do
+  #Happy Path Tests
   it "gets all merchants" do
     create_list(:merchant, 3)
 
     get '/api/v1/merchants'
 
-    expect(response).to be_successful
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    merchants = response_body[:data]
 
-    merchants = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to be_successful
 
     expect(merchants.count).to eq(3)
 
     merchants.each do |merchant|
       expect(merchant).to have_key(:id)
-      expect(merchant[:id]).to be_an(Integer)
+      expect(merchant[:id]).to be_a(String)
 
-      expect(merchant).to have_key(:name)
-      expect(merchant[:name]).to be_a(String)
+      expect(merchant).to have_key(:attributes)
+      expect(merchant[:attributes][:name]).to be_a(String)
     end
   end
 
@@ -26,15 +29,15 @@ describe "Merchants API" do
 
     get "/api/v1/merchants/#{id}"
 
-    expect(response).to be_successful
-
-    merchant = JSON.parse(response.body, symbolize_names: true)
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    merchant = response_body[:data]
 
     expect(merchant).to have_key(:id)
-    expect(merchant[:id]).to be_an(Integer)
+    expect(merchant[:id]).to be_a(String)
 
-    expect(merchant).to have_key(:name)
-    expect(merchant[:name]).to be_a(String)
+    expect(merchant).to have_key(:attributes)
+    expect(merchant[:attributes][:name]).to be_a(String)
   end
 
 end
