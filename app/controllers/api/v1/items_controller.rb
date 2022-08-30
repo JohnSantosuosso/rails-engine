@@ -13,7 +13,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    render json: Item.update(params[:id], item_params)
+    render json: Item.update(params[:id], item_params) #need to change to add data validation/sad path
   end
 
   private
