@@ -15,7 +15,7 @@ class Api::V1::SearchesController < ApplicationController
 
   def find_matching_merchant
     if params[:name]
-      merchant = Merchant.where("name ILIKE ?", "%#{params[:name]}%").order(:name).first
+      merchant = Merchant.merchant_name_match_first(params[:name])
       check_for_nil_merchant(merchant)
     end
   end
