@@ -145,4 +145,16 @@ describe "Items API" do
     expect(response).to be_successful
   end
 
+  it "finds all items by name, sad path" do
+    merchant = Merchant.create!(name: "Shoe Factory")
+    item_1 = Item.create!(name: "Air Jordans", merchant_id: merchant.id, description: "Item 1 description", unit_price: 100.00)
+    item_2 = Item.create!(name: "Kanye Boots", merchant_id: merchant.id, description: "Item 2 description", unit_price: 200.00)
+    item_3 = Item.create!(name: "Stilettos", merchant_id: merchant.id, description: "Item 3 description", unit_price: 300.00)
+    item_4 = Item.create!(name: "Air Johns", merchant_id: merchant.id, description: "Item 4 description", unit_price: 400.00)
+
+    get "/api/v1/items/find_all?name=Rabbit" #passes params name: "Air"
+
+    expect(response).to be_successful
+  end
+
 end
