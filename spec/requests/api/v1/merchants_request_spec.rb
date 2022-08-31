@@ -51,7 +51,11 @@ describe "Merchants API" do
     response_body = JSON.parse(response.body, symbolize_names: true)
     
     merchant = response_body[:data]
-    
+
     expect(response).to be_successful
+
+    expect(merchant).to have_key(:id)
+    expect(merchant[:id]).to be_a(String)
+    expect(merchant[:attributes][:name]).to eq("Shoe Factory")
   end
 end
