@@ -133,7 +133,7 @@ describe "Items API" do
   end
 
   #Section 2: Searching Items
-  it "finds all items by name" do
+  it "finds all items by name, HAPPY PATH" do
     merchant = Merchant.create!(name: "Shoe Factory")
     item_1 = Item.create!(name: "Air Jordans", merchant_id: merchant.id, description: "Item 1 description", unit_price: 100.00)
     item_2 = Item.create!(name: "Kanye Boots", merchant_id: merchant.id, description: "Item 2 description", unit_price: 200.00)
@@ -161,7 +161,7 @@ describe "Items API" do
     end
   end
 
-  it "finds all items by name, sad path" do
+  it "finds all items by name, SAD PATH" do
     merchant = Merchant.create!(name: "Shoe Factory")
     item_1 = Item.create!(name: "Air Jordans", merchant_id: merchant.id, description: "Item 1 description", unit_price: 100.00)
     item_2 = Item.create!(name: "Kanye Boots", merchant_id: merchant.id, description: "Item 2 description", unit_price: 200.00)
@@ -175,7 +175,6 @@ describe "Items API" do
     response_body = JSON.parse(response.body, symbolize_names: true)
     
     items = response_body[:data]
-    require 'pry'; binding.pry 
 
     expect(items).to eql([])
   end
