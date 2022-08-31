@@ -35,10 +35,10 @@ class Api::V1::SearchesController < ApplicationController
     end
 
     def check_for_nil_merchant(merchant)
-      if merchant != []
+      if !merchant.nil?
         render json: MerchantSerializer.new(merchant)
       else
-        error_rendering
+        render json: { data: {}, message: 'No Matches Found'} 
       end
     end
 end
