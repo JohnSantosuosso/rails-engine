@@ -233,9 +233,9 @@
           1,
           1,
           1,
-          null,
-          null,
           1,
+          1,
+          null,
           null,
           1,
           null,
@@ -253,6 +253,20 @@
           1,
           1,
           1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -452,6 +466,19 @@
           1,
           null,
           null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
           null
         ]
       },
@@ -628,6 +655,21 @@
           null
         ]
       },
+      "/Users/johnsantosuosso/rails-engine/rails-engine/app/controllers/api/v1/searches_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/johnsantosuosso/rails-engine/rails-engine/app/controllers/api/v1/merchant_items_controller.rb": {
         "lines": [
           1,
@@ -660,6 +702,6 @@
         ]
       }
     },
-    "timestamp": 1661900732
+    "timestamp": 1661910863
   }
 }
