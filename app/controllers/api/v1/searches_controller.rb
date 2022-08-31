@@ -1,6 +1,6 @@
 class Api::V1::SearchesController < ApplicationController
 
-  def find_all
+  def find_matching_items
     if params[:name]
       items = Item.items_name_match(params[:name])
       check_for_nil_items(items)
@@ -13,7 +13,7 @@ class Api::V1::SearchesController < ApplicationController
     end
   end
 
-  def find_one_merchant
+  def find_matching_merchant
     if params[:name]
       merchant = Merchant.where("name ILIKE ?", "%#{params[:name]}%").order(:name).first
       check_for_nil_merchant(merchant)
