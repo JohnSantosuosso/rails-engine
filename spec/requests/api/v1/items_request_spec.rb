@@ -139,6 +139,7 @@ describe "Items API" do
     item_2 = Item.create!(name: "Kanye Boots", merchant_id: merchant.id, description: "Item 2 description", unit_price: 200.00)
     item_3 = Item.create!(name: "Stilettos", merchant_id: merchant.id, description: "Item 3 description", unit_price: 300.00)
     item_4 = Item.create!(name: "Air Johns", merchant_id: merchant.id, description: "Item 4 description", unit_price: 400.00)
+    item_4 = Item.create!(name: "Fair Jordans", merchant_id: merchant.id, description: "Item 5 description", unit_price: 500.00)
 
     get "/api/v1/items/find_all?name=Air" #passes params name: "Air"
 
@@ -148,7 +149,7 @@ describe "Items API" do
 
     expect(response).to be_successful
 
-    expect(items.count).to eq(2)
+    expect(items.count).to eq(3)
 
     items.each do |item|
       expect(item).to have_key(:id)
@@ -159,6 +160,10 @@ describe "Items API" do
       expect(item[:attributes][:unit_price]).to be_a(Float)
       expect(item[:attributes][:merchant_id]).to be_a(Integer)
     end
+
+    expect(items[0][:attributes][:name]).to eq("Air Jordans")
+    expect(items[1][:attributes][:name]).to eq("Air Johns")
+    expect(items[2][:attributes][:name]).to eq("Fair Jordans")
   end
 
   it "finds all items by name, SAD PATH" do

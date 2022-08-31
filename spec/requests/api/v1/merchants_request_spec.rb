@@ -40,4 +40,38 @@ describe "Merchants API" do
     expect(merchant[:attributes][:name]).to be_a(String)
   end
 
+  #Section 2: Searching Merchants By Criteria
+  it "finds a merchant by criteria, HAPPY PATH" do
+    merchant_1 = Merchant.create!(name: "Shoe Factory")
+    merchant_2 = Merchant.create!(name: "Shoe House")
+    merchant_3 = Merchant.create!(name: "Air Jordans")
+
+    get "/api/v1/merchants/find?name=Shoe"
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    merchant = response_body[:data]
+
+    expect(response).to be_successful
+
+    expect(merchant).to have_key(:id)
+    expect(merchant[:id]).to be_a(String)
+    expect(merchant[:attributes][:name]).to eq("Shoe Factory")
+  end
+
+  it "finds a merchant by criteria, SAD PATH" do
+    merchant_1 = Merchant.create!(name: "Shoe Factory")
+    merchant_2 = Merchant.create!(name: "Shoe House")
+    merchant_3 = Merchant.create!(name: "Air Jordans")
+
+    get "/api/v1/merchants/find?name=Basketball"
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    merchant = response_body[:data]
+
+    expect(response).to be_successful
+
+    expect(merchant).to eql({})
+  end
 end

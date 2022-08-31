@@ -1,15 +1,22 @@
 class Api::V1::SearchesController < ApplicationController
 
-  def find_all
+  def find_matching_items
     if params[:name]
-      items = Item.where("name ILIKE ?", "%#{params[:name]}%")
-      nil_check(items)
+      items = Item.items_name_match(params[:name])
+      check_for_nil_items(items)
     elsif params[:min_price]
-      items = Item.where("unit_price > ?", params[:min_price])
-      nil_check(items)
+      items = Item.items_min_price_match(params[:name])
+      check_for_nil_items(items)
     elsif params[:max_price]
-      items = Item.where("unit_price < ?", params[:max_price])
-      nil_check(items)
+      items = Item.items_max_price_match(params[:max_price])
+      check_for_nil_items(items)
+    end
+  end
+
+  def find_matching_merchant
+    if params[:name]
+      merchant = Merchant.merchant_name_match_first(params[:name])
+      check_for_nil_merchant(merchant)
     end
   end
 
@@ -19,11 +26,19 @@ class Api::V1::SearchesController < ApplicationController
       render json: { data: [], message: 'No Matches Found'} 
     end
 
-    def nil_check(items)
+    def check_for_nil_items(items)
       if items != []
         render json: ItemSerializer.new(items)
       else
         error_rendering
+      end
+    end
+
+    def check_for_nil_merchant(merchant)
+      if !merchant.nil?
+        render json: MerchantSerializer.new(merchant)
+      else
+        render json: { data: {}, message: 'No Matches Found'} 
       end
     end
 end
