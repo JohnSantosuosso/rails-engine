@@ -159,7 +159,6 @@ describe "Items API" do
       expect(item[:attributes][:unit_price]).to be_a(Float)
       expect(item[:attributes][:merchant_id]).to be_a(Integer)
     end
-
   end
 
   it "finds all items by name, sad path" do
@@ -169,9 +168,16 @@ describe "Items API" do
     item_3 = Item.create!(name: "Stilettos", merchant_id: merchant.id, description: "Item 3 description", unit_price: 300.00)
     item_4 = Item.create!(name: "Air Johns", merchant_id: merchant.id, description: "Item 4 description", unit_price: 400.00)
 
-    get "/api/v1/items/find_all?name=Rabbit" #passes params name: "Air"
+    get "/api/v1/items/find_all?name=Rabbit"
 
     expect(response).to be_successful
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    items = response_body[:data]
+    require 'pry'; binding.pry 
+
+    expect(items).to eql([])
   end
 
 end
