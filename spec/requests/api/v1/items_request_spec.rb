@@ -159,6 +159,9 @@ describe "Items API" do
       expect(item[:attributes][:unit_price]).to be_a(Float)
       expect(item[:attributes][:merchant_id]).to be_a(Integer)
     end
+
+    expect(items.first[:attributes][:name]).to eq("Air Jordans")
+    expect(items.last[:attributes][:name]).to eq("Air Johns")
   end
 
   it "finds all items by name, SAD PATH" do
