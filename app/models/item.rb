@@ -7,17 +7,15 @@ class Item < ApplicationRecord
   validates_numericality_of :unit_price, greater_than_or_equal_to: 0.00
   validates_presence_of :merchant_id, type: :integer
 
-  # def self.find_all(search_params)
-  #   if search_params[:name]
-  #     Item.where("name ILIKE ?", "%#{search_params[:name]}%")
-  #   elsif search_params[:description]
-  #     Item.where("description ILIKE ?", "%#{search_params[:description]}%")
-  #   elsif search_params[:unit_price]
-  #     Item.where("unit_price = ?", "#{search_params[:unit_price]}")
-  #   elsif search_params[:merchant_id]
-  #     Item.where("merchant_id = ?", "#{search_params[:merchant_id]}")
-  #   else
-  #     Item.all
-  #   end
-  # end
+  def self.items_name_match(name)
+    where("name ILIKE ?", "%#{name}%")
+  end
+
+  def self.items_min_price_match(min_price)
+    where("unit_price > ?", min_price)
+  end
+
+  def self.items_max_price_match(max_price)
+    where("unit_price < ?", max_price)
+  end
 end

@@ -2,13 +2,13 @@ class Api::V1::SearchesController < ApplicationController
 
   def find_all
     if params[:name]
-      items = Item.where("name ILIKE ?", "%#{params[:name]}%")
+      items = Item.items_name_match(params[:name])
       check_for_nil_items(items)
     elsif params[:min_price]
-      items = Item.where("unit_price > ?", params[:min_price])
+      items = Item.items_min_price_match(params[:name])
       check_for_nil_items(items)
     elsif params[:max_price]
-      items = Item.where("unit_price < ?", params[:max_price])
+      items = Item.items_max_price_match(params[:max_price])
       check_for_nil_items(items)
     end
   end
