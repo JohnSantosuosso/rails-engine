@@ -27,7 +27,17 @@ class Item < ApplicationRecord
     where("unit_price >= ?", min_price).where("unit_price <= ?", max_price)
   end
 
+  def destroy_invoice_items
+    invoice_items = InvoiceItem.where(item_id: self.id)
+    invoice_items.each do |invoice_item|
+      invoice_item.destroy
+    end
+  end
+
   def destroy_invoice_if_one_item
-    
+    single_item_invoices = invoices.select {|y| y.invoice_items.count == 1}
+    single_item_invoices.each do |invoice|
+      invoice.delete
+    end
   end
 end
