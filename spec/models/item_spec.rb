@@ -57,6 +57,12 @@ RSpec.describe Item, type: :model do
 
       expect(Item.items_min_max_price_match(100.00, 300.00)).to eq([item_2, item_3])
     end
+
+    it 'destroy_invoice_if_one_item' do
+      cus
+      merchant = Merchant.create!(name: "Shoe Factory")
+      item_1 = Item.create!(name: "Air Jordans", merchant_id: merchant.id, description: "Item 1 description", unit_price: 10.00)
+
   end
 
 
