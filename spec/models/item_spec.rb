@@ -69,12 +69,11 @@ RSpec.describe Item, type: :model do
       invoice_2 = Invoice.create!(customer_id: customer_1.id, merchant_id: merchant_1.id, status: "shipped")
       invoice_item_3 = InvoiceItem.create!(item_id: item_1.id, invoice_id: invoice_2.id, quantity: 1, unit_price: 10.00)
 
- 
-      item_1.destroy_invoice_items
-      expect(item_1.destroy_invoice_if_one_item).to eq([])
+
+      item_1.destroy_invoice_if_one_item
+      
+      expect(Invoice.all.count).to eq(1)
 
     end
   end
-
-
 end
