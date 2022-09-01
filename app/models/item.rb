@@ -12,10 +12,14 @@ class Item < ApplicationRecord
   end
 
   def self.items_min_price_match(min_price)
-    where("unit_price > ?", min_price)
+    where("unit_price >= ?", min_price)
   end
 
   def self.items_max_price_match(max_price)
-    where("unit_price < ?", max_price)
+    where("unit_price <= ?", max_price)
+  end
+
+  def self.items_min_max_price_match(min_price, max_price)
+    where("unit_price >= ?", min_price).where("unit_price <= ?", max_price)
   end
 end
