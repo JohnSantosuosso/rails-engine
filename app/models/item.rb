@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :merchant
+  has_many :invoice_items, dependent: :destroy
+  has_many :invoices, through: :invoice_items
+  has_many :transactions, through: :invoices
+  has_many :customers, through: :invoices
 
   validates_presence_of :name, type: :string
   validates_presence_of :description, type: :string
@@ -21,5 +25,13 @@ class Item < ApplicationRecord
 
   def self.items_min_max_price_match(min_price, max_price)
     where("unit_price >= ?", min_price).where("unit_price <= ?", max_price)
+  end
+
+
+  def destroy_invoice_if_one_item
+    single_item_invoices = invoices.select {|y| y.invoice_items.count == 1}
+    single_item_invoices.each do |invoice|
+      invoice.destroy
+    end
   end
 end

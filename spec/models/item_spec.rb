@@ -57,7 +57,23 @@ RSpec.describe Item, type: :model do
 
       expect(Item.items_min_max_price_match(100.00, 300.00)).to eq([item_2, item_3])
     end
+
+    it 'destroy_invoice_if_one_item' do
+      customer_1 = Customer.create!(first_name: "John", last_name: "Doe")
+      merchant_1 = Merchant.create!(name: "Shoe Factory")
+      item_1 = Item.create!(name: "Air Jordans", merchant_id: merchant_1.id, description: "Item 1 description", unit_price: 10.00)
+      item_2 = Item.create!(name: "Kanye Boots", merchant_id: merchant_1.id, description: "Item 2 description", unit_price: 200.00)
+      invoice_1 = Invoice.create!(customer_id: customer_1.id, merchant_id: merchant_1.id, status: "shipped")
+      invoice_item_1 = InvoiceItem.create!(item_id: item_1.id, invoice_id: invoice_1.id, quantity: 1, unit_price: 10.00)
+      invoice_item_2 = InvoiceItem.create!(item_id: item_2.id, invoice_id: invoice_1.id, quantity: 1, unit_price: 10.00)
+      invoice_2 = Invoice.create!(customer_id: customer_1.id, merchant_id: merchant_1.id, status: "shipped")
+      invoice_item_3 = InvoiceItem.create!(item_id: item_1.id, invoice_id: invoice_2.id, quantity: 1, unit_price: 10.00)
+
+
+      item_1.destroy_invoice_if_one_item
+      
+      expect(Invoice.all.count).to eq(1)
+
+    end
   end
-
-
 end
