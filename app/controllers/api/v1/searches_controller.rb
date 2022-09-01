@@ -1,7 +1,7 @@
 class Api::V1::SearchesController < ApplicationController
 
   def find_matching_items
-    if params[:name]
+    if params.keys.count == 3 && params[:name]
       items = Item.items_name_match(params[:name])
       check_for_nil_items(items)
     elsif params.keys.count == 3 && params[:min_price]
@@ -13,6 +13,8 @@ class Api::V1::SearchesController < ApplicationController
     elsif params[:min_price] && params[:max_price]
       items = Item.items_min_max_price_match(params[:min_price], params[:max_price])
       check_for_nil_items(items)
+    else
+      render json: { data: {errors: "You have entered invalid search data" } }
     end
   end
 
@@ -25,7 +27,7 @@ class Api::V1::SearchesController < ApplicationController
 
 
   private
-    def error_rendering
+    def no_matches_found
       render json: { data: [], message: 'No Matches Found'} 
     end
 
@@ -33,7 +35,7 @@ class Api::V1::SearchesController < ApplicationController
       if items != []
         render json: ItemSerializer.new(items)
       else
-        error_rendering
+        no_matches_found
       end
     end
 

@@ -249,4 +249,25 @@ describe "Items API" do
     expect(items).to eql([])
   end
 
+  it "finds all items by min_price and name, SAD PATH" do
+    merchant = Merchant.create!(name: "Shoe Factory")
+    item_1 = Item.create!(name: "Air Jordans", merchant_id: merchant.id, description: "Item 1 description", unit_price: 10.00)
+    item_2 = Item.create!(name: "Kanye Boots", merchant_id: merchant.id, description: "Item 2 description", unit_price: 200.00)
+    item_3 = Item.create!(name: "Stilettos", merchant_id: merchant.id, description: "Item 3 description", unit_price: 300.00)
+    item_4 = Item.create!(name: "Air Johns", merchant_id: merchant.id, description: "Item 4 description", unit_price: 400.00)
+    item_5 = Item.create!(name: "Fair Jordans", merchant_id: merchant.id, description: "Item 5 description", unit_price: 500.00)
+
+    get "/api/v1/items/find_all?name=Kanye&min_price=300"
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    
+    error = response_body[:data]
+  
+    expect(response).to be_successful
+    require 'pry'; binding.pry 
+
+    expect(error[:errors]).to eq("You have entered invalid search data")
+
+  end
+
 end
