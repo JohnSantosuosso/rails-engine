@@ -4,12 +4,14 @@ class Api::V1::SearchesController < ApplicationController
     if params[:name]
       items = Item.items_name_match(params[:name])
       check_for_nil_items(items)
-    elsif params[:min_price]
-      require 'pry'; binding.pry 
+    elsif params.keys.count == 3 && params[:min_price]
       items = Item.items_min_price_match(params[:min_price])
       check_for_nil_items(items)
-    elsif params[:max_price]
+    elsif params.keys.count == 3 && params[:max_price]
       items = Item.items_max_price_match(params[:max_price])
+      check_for_nil_items(items)
+    elsif params[:min_price] && params[:max_price]
+      items = Item.items_min_max_price_match(params[:min_price], params[:max_price])
       check_for_nil_items(items)
     end
   end
