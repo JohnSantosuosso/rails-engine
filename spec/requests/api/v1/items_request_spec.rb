@@ -264,10 +264,8 @@ describe "Items API" do
     error = response_body[:data]
   
     expect(response).to be_successful
-    require 'pry'; binding.pry 
 
     expect(error[:errors]).to eq("You have entered invalid search data")
-
   end
 
 end
