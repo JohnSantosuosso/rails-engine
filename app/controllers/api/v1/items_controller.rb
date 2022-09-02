@@ -34,7 +34,8 @@ class Api::V1::ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     if item.destroy
-      render json: ItemSerializer.new(item), status: 204
+      item.destroy_invoice_if_one_item
+      render status: 204
     else
       render status: 404
     end
