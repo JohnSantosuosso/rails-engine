@@ -18,10 +18,8 @@
     <li><a href="#project-files-description"> ➤ Project Files Description</a></li>
     <li><a href="#db-schema"> ➤ Database Schema</a></li>
     <li><a href="#getting-started"> ➤ Getting Started</a></li>
-    <li><a href="#scenario1"> ➤ Scenario 1: Create a New User </a></li>
-    <li><a href="#scenario2"> ➤ Scenario 2: Discover Movies </a></li>
-    <li><a href="#scenario3"> ➤ Scenario 3: Create a Viewing Party  </a></li>
-    <li><a href="#scenario4"> ➤ Scenario 4: View User Dashboard</a></li>
+    <li><a href="#scenario1"> ➤ Scenario 1: Run RSpec Test Suite </a></li>
+    <li><a href="#scenario2"> ➤ Scenario 2: Run Postman Test Collections </a></li>
     <li><a href="#credits"> ➤ Credits</a></li>
   </ol>
 </details>
@@ -70,7 +68,7 @@
 
 <img width="750" alt="Screen Shot 2022-09-04 at 12 53 40 PM" src="https://user-images.githubusercontent.com/95776577/188324699-55143081-0395-47b6-8663-ef4e418308c5.png">
 
-
+  <p>Note: Only <i>Items</i>, <i>Merchants</i>, <i>Invoices</i>, <i>Invoice Items</i>, and <i>Customers</i> were utilized for this project.
 <!-- GETTING STARTED -->
 <h2 id="getting-started"> :book: Getting Started</h2>
 
@@ -90,61 +88,41 @@
 <pre><code>$ code .</code></pre>
 
 <p><b>6. </b> Download Tests for Postman</a>.</p>
-<ul><li><a href="https://backend.turing.edu/module3/projects/rails_engine_lite/RailsEngineSection1.postman_collection.json">Postman Testing Suite 1</a></li>
-<li><a href="https://backend.turing.edu/module3/projects/rails_engine_lite/RailsEngineSection2.postman_collection.json">Postman Testing Suite 2</a></li>
-<li>Click on each link to load it in your browser, then hit Cmd-S to save it to your system.</li></ul>
+<ul><li>Click on each link below to load a test collection in your browser, then hit <b>Cmd-S</b> to save it to your system.</li>
+<li><a href="https://backend.turing.edu/module3/projects/rails_engine_lite/RailsEngineSection1.postman_collection.json">Postman Testing Suite 1</a></li>
+<li><a href="https://backend.turing.edu/module3/projects/rails_engine_lite/RailsEngineSection2.postman_collection.json">Postman Testing Suite 2</a></li></ul>
 
-<p><b>6. </b> Import Postman tests</a>.</p>
+<p><b>7. </b> Import Postman tests</a>.</p>
 <ul><li>In Postman, in the top left corner, click on the <b>Import</b> button, and use the file selector to locate the two files on your operating system.</li>
 <li>Next, you’ll <b>confirm</b> the import. The test suite should display as a <b>Postman Collection v2.1</b> and import as a <i>Collection</i>. Click the <b>Import</b> button to continue.</li>
 <li>Within your collections in Postman, you should see two collections– <b>Rails Engine Lite, Part 1</b>, and <b>Rails Engine Lite, Part 2</b>.</li></ul>
 
-<p><b>6. </b> In your IDE, install dependencies found in Gemfile using your terminal</a>.</p>
+<p><b>8. </b> In your IDE, install dependencies found in Gemfile using your terminal</a>.</p>
 <pre><code>$ bundle install</code></pre>
 
-<p><b>10. </b> Run migrations and dump schema</p>
+<p><b>9. </b> Run migrations and dump schema</p>
 <pre><code>$ rake db:{drop,create,migrate,seed}</code></pre>
 <pre><code>$ rails db:schema:dump</code></pre>
 
-<p><b>10. </b> Run testing suite</p>
+<!-- SCENARIO1 -->
+<h2 id="scenario1"> :small_orange_diamond: Scenario 1: Run RSpec Test Suite</h2>
+<p>View the tests for API endpoints inside <b>spec/requests</b>.</p>
+<p>Test all functionality by running:</b>.</p>
 <pre><code>$ bundle exec rspec spec</code></pre>
 
-<p><b>11. </b> Initiate the application on your local server</a>.</p>
-<pre><code>$ rails s</code></pre>
-
-<p><b>12. </b> Open your favorite web browser and enter the URL in the address bar:</p>
-<pre><code>localhost:3000</code></pre>
-
-
-
-<!-- SCENARIO1 -->
-<h2 id="scenario1"> :small_orange_diamond: Scenario 1: Create a New User</h2>
-<p>A new user can be created and stored in the database.  Validations exist to prevent multiple users registered with the same email address.</p>
-
-![step 1-1](https://user-images.githubusercontent.com/95776577/188297760-5b9c7bd5-0b87-4dd6-ac7a-8fd708ff9215.gif)
-
-
 <!-- SCENARIO2 -->
-<h2 id="scenario2"> :small_orange_diamond: Scenario 2: Discover Movies </h2>
-<p>A user can search for movies by title and view that movie's details.  A user can also see top rate movies by clicking the <b>Top Movies</b> button</p>
-
-![step 2](https://user-images.githubusercontent.com/95776577/188296031-01b7d35f-cf38-49e0-9bd4-8cc33aa1264b.gif)
-
-
-<!-- SCENARIO3 -->
-<h2 id="scenario3"> :small_orange_diamond: Scenario 3: Create a Viewing Party </h2>
-<p>A user can select a movie and create a viewing party for that movie.</p>
-
-
-![step 3](https://user-images.githubusercontent.com/95776577/188296382-4d1656c0-a27a-44c2-ba90-ff262ab24d21.gif)
-
-<!-- SCENARIO4 -->
-<h2 id="scenario4"> :small_orange_diamond: Scenario 4: View User Dashboard </h2>
-<p>A user can view the viewing parties they are hosting, as well as the parties they have been invited to.</p>
-
-![step 4](https://user-images.githubusercontent.com/95776577/188296671-a1de8a83-b5a5-4099-853c-a167471fa152.gif)
-
-
+<h2 id="scenario2"> :small_orange_diamond: Scenario 2: Run Postman Test Collections </h2>
+<p>API endpoints can be tested both individually and collectively.</p>
+<ul><li><b>Testing an endpoint</b></li><ul>
+  <li><i>Start the application on your local server</i></li><ul>
+  <li><pre><code>$ rails s</code></pre></li></ul>
+  <li><i>Open the Postman Test Collections</i></li><ul>
+  <li>Find the appropriate endpoint within the Postman collection you imported.</li>
+  <li>For example, <b>Get All Merchants</b>. When you select <b>Get All Merchants</b> from the list, you should see a Postman tab open, pre-populated with everything you need to connect to the endpoint in your code and see if it works correctly.</li>
+  <li>Click the <b>Send</b> button in the top right corner.</li>
+  <li>In the lower portion of the Postman interface, you should see </i>Body, Cookies, Headers</i> and a spot that says something like <b>Test Results (7/7)</b>. This would indicate that 7 tests passed out of 7. If you see, for example, 3/7 then 3 tests passed and 4 did not.</li></ul>
+  </ul>
+  
 <!-- CREDITS -->
 <h2 id="credits"> :scroll: Credits</h2>
 <h3>John Santosuosso</h3>
@@ -152,5 +130,5 @@
 [![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/johnsantosuosso)
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/john-santosuosso)
 
-<p>Project inspired and guided by Turing School of Software and Design's <a href="https://developers.themoviedb.org/3/getting-started/introduction"> Viewing Party Lite.</a></p>
+<p>Project inspired and guided by Turing School of Software and Design's <a href="https://backend.turing.edu/module3/projects/rails_engine_lite/"> Rails Engine Lite.</a></p>
 
